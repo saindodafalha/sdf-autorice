@@ -1,0 +1,25 @@
+#!/bin/bash
+# SDF Rice 16/12/2024
+# retorna o volume e se está mudo
+
+is_mute="$(pactl get-sink-mute $MY_PACTL_SINK | cut -d' ' -f2)";
+volume="$(pactl get-sink-volume $MY_PACTL_SINK | grep Volume | tr -s ' ' | cut -d' ' -f5)";
+
+if [[ "$is_mute" == 'no'  ]] 
+then
+   is_mute='';
+   icon='';
+elif [[ "$is_mute" == 'yes' ]]
+then
+   is_mute=' (mute)';
+   icon='';
+fi
+
+volume="$icon $volume$is_mute";
+
+if [[ $1 == '-n' ]]
+then
+   notify-send -a volumectl -u low "$volume" -r 10000001;
+else
+   echo "$volume";
+fi

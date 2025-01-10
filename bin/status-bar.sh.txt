@@ -1,0 +1,40 @@
+#!/bin/bash
+# SDF Rice 16/12/2024 
+
+# gera o conteúdo do slstatus
+
+# pega dados de data/hora
+time="$(date '+%H:%M')";
+weekday="$(date '+%a')";
+daymonth="$(date '+%d/%b')";
+
+# pega dados de desempenho
+mem="$(free -h | grep Mem: | tr -s ' ' | cut -d' ' -f 3)";
+swap="$(free -h | grep Swap: | tr -s ' ' | cut -d' ' -f 3)";
+loadavg="$(uptime | cut -d, -f3 | cut -d: -f2 | tr -d ' ')";
+
+# formatação dos dados
+f_daymonth="$daymonth";
+f_weekday="$weekday";
+f_time="$time";
+
+# só mostra o swap se estiver sendo usado
+if [[ $swap == '0B' ]] 
+then 
+   swap='';
+else
+   swap=" ^c#ffdf94^swap $swap";
+fi
+
+# mais formatação de dados
+f_mem="$mem$swap";
+f_loadavg=" $loadavg";
+
+# prepara saída
+sep=' ';
+status_bar="\
+^c#ffffff^ $sep $f_loadavg  $f_mem\
+^c#ffffff^ $sep $f_daymonth $f_weekday $f_time ";
+
+# exibe
+echo "$status_bar";

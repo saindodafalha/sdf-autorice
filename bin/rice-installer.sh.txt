@@ -1,0 +1,103 @@
+#!/bin/bash
+# SDF Rice 16/12/2024 
+
+# baixa os config files específicos do
+# meu ricing em $RICE/etc.
+# baixa o meu prompt em $RICE/env.
+# baixa meu script do slstatus em
+# $RICE/bin.
+# baixa meu wallpaper em $RICE/wal.
+# baixa scripts para aplicar os config
+# files em $RICE/bin.
+# instala os config files 
+# rebuilda os softwares suckless
+
+# base do repositório, análogo ao $RICE
+REPO_ROOT='https://github.com/saindodafalha/sdf-autorice/blob/master';
+
+cd $RICE;
+mkdir log var etc doc env wal api;
+
+# baixa os config files (etc)
+cd ./etc;
+mkdir dmenu dwm slock slstatus st xinit bash dunst xbindkeys;
+wget $REPO_ROOT/etc/dmenu/config.def.h.txt -O dmenu/config.def.h;
+wget $REPO_ROOT/etc/dwm/config.def.h.txt -O dwm/config.def.h;
+wget $REPO_ROOT/etc/slock/config.def.h.txt -O slock/config.def.h;
+wget $REPO_ROOT/etc/slstatus/config.def.h.txt -O slstatus/config.def.h;
+wget $REPO_ROOT/etc/st/config.def.h.txt -O st/config.def.h;
+wget $REPO_ROOT/etc/xinit/xinitrc.txt -O xinit/xinitrc;
+wget $REPO_ROOT/etc/bash/profile.txt -O bash/profile;
+wget $REPO_ROOT/etc/bash/bashrc.txt -O bash/bashrc;
+wget $REPO_ROOT/etc/dunst/dunstrc.txt -O dunst/dunstrc;
+wget $REPO_ROOT/etc/xbindkeys/xbindkeysrc.txt -O xbindkeys/xbindkeysrc;
+cd ..;
+
+# baixa o prompt
+cd ./env;
+wget $REPO_ROOT/env/prompt.env.txt -O prompt.env;
+wget $REPO_ROOT/env/globals.env.txt -O globals.env;
+source ./globals.env;
+cd ..;
+
+# baixa o script de mostrar o volume
+cd ./api;
+wget $REPO_ROOT/api/get-pactl-volume.sh.txt -O get-pactl-volume.sh;
+chmod u+x *.sh;
+cd ..;
+
+# baixa o wallpaper
+cd ./wal;
+wget $REPO_ROOT/wal/autumn-leaves.jpeg -O autumn-leaves.jpeg;
+cd ..;
+
+# baixa os docs
+cd ./doc;
+wget $REPO_ROOT/doc/LICENSE.txt -O LICENSE;
+wget $REPO_ROOT/doc/README.txt -O README;
+cd ..;
+
+# baixa os scripts
+cd ./bin; 
+wget $REPO_ROOT/bin/status-bar.sh.txt -O status-bar.sh;
+wget $REPO_ROOT/bin/hardlink-dotfiles.sh.txt -O hardlink-dotfiles.sh;
+chmod u+x *.sh;
+cd ..;
+
+# instala os config files
+$RICE/bin/hardlink-dotfiles.sh;
+
+# recompila os softwares em $RICE/src
+cd ./src;
+
+cd ./dmenu-5.3;
+[[ -f ./config.h ]] && rm ./config.h;
+make;
+cd ..;
+
+cd ./dwm-6.2;
+[[ -f ./config.h ]] && rm ./config.h;
+make;
+cd ..;
+
+cd ./slock-1.5;
+[[ -f ./config.h ]] && rm ./config.h;
+make;
+cd ..;
+
+cd ./slstatus-1.0;
+[[ -f ./config.h ]] && rm ./config.h;
+make;
+cd ..;
+
+cd ./st-0.9.2;
+[[ -f ./config.h ]] && rm ./config.h;
+make;
+cd ..;
+
+# tenta configurar o audio automáticamente
+# nem sempre funciona (erro de conexão recusada)
+# o sink pode estar errado, ver $RICE/env/globals.env 
+pgrep pulseaudio &> /dev/null || pulseaudio --start &
+pactl set-sink-volume $MY_PACTL_SINK 50%; 
+pactl set-sink-mute $MY_PACTL_SINK false; 

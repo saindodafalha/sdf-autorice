@@ -1,0 +1,45 @@
+                    LICENÇA PÚBLICA POG&WERKS
+                    Versão 0 novembro de 2024
+
+A qualquer pessoa é permitido  copiar e  distribuir  cópias deste 
+documento.
+
+INTRODUÇÃO
+   Este software foi desenvolvido com o paradigma  de Programação 
+   Orientado a Gambiarras (POG), OOP é coisa de fresco.
+   Este software foi totalmente desenvolvido  com  a  metodologia 
+   just werks, scrum é coisa de coach.
+   Este software foi testado e funciona (WERKS) perfeitamente  na 
+   minha máquina. Ainda não testei na sua.
+   Este software *provavelmente* foi escrito por algum fracassado 
+   aleatório na internet que não tinha nada melhor para fazer  no 
+   dia além de bater punheta para animezonas gostosas.
+   Este documento não é irônico.  Eu não escrevo ironias e eu não
+   compreendo o conceito homossexual de ironia!  
+
+AUSÊNCIA DE GARANTIAS
+   Eu garanto que este software funciona e foi amplamente testado 
+   na *minha máquina*.
+   Eu NÃO garanto que  essa  coisa  funcione  em  qualquer  outra 
+   máquina.
+   Se não funcionar na sua máquina... te vira.
+   Este software também não tem nenhum  suporte  e  provavelmente  
+   nem é mantido e não recebe atualizações.  Você  está  por  sua 
+   conta.
+   Este software não passou  por  nenhum  teste  de  segurança  e  
+   provavelmente foi escrito por um hobbista  aleatório  que  não
+   entende nada de segurança digital.
+   Não seja *burro* de usar essa  coisa  para  operar  com  dados 
+   sensíveis!
+   Em resumo, não garantimos nada, talvez nós nem saibamos o  que
+   estamos fazendo e, principalmente, *não conte conosco*! 
+
+TERMOS E CONDIÇÕES PARA CÓPIA, DISTRIBUIÇÃO E MODIFICAÇÃO
+   *   Você pode copiar, distribuir, modificar, fazer o que quiser 
+       com código-fonte, desde que não feche o código e mantenha o
+       software livre.  
+   *   Em resumo, faça o que quiser com este troço, mas  distribua
+       de forma aberta e  livre,  assim  como  você  recebeu  este  
+       software de forma aberta e livre.
+   *   Propriedade intelectual não existe.
+   *   Caiu na rede, é peixe.

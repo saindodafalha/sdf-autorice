@@ -1,0 +1,23 @@
+#!/bin/bash
+# SDF Rice 16/12/2024 
+
+# este script instala as dependencias 
+# deve ser executado com sudo
+
+apt install \
+make \
+gcc \
+patch \
+libxrandr-dev \
+libx11-dev \
+libxft-dev \
+libxinerama-dev \
+xorg \
+dunst \
+libnotify-bin \
+xbindkeys \
+feh \
+fonts-font-awesome \
+fonts-noto-color-emoji \
+pulseaudio \
+picom;

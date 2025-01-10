@@ -1,0 +1,8 @@
+# SDF Rice 16/12/2024 
+dwm &
+feh --bg-fill --no-fehbg $RICE/wal/autumn-leaves.jpeg &
+picom -c &
+dunst &
+setxkbmap -model abnt2 -layout br &
+xbindkeys &
+slstatus

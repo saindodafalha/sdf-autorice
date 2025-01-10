@@ -1,0 +1,58 @@
+#!/bin/bash
+# SDF Rice 16/12/2024 
+
+# ATENÇÃO: este script sobreescreve
+# dados. se você tiver, por exemplo,
+# um arquivo ~/.xinitrc ele será
+# sobreescrito pelo novo arquivo de
+# configuração em $RICE/etc/xint/xinitrc
+
+# este script cria hardlinks a partir
+# de $RICE/etc/ em vários pontos do
+# sistema. as regras de onde cada hardlink
+# será criado são definidas abaixo.
+# se não existir uma regra para um arquivo
+# presente em $RICE/etc, nenhum hardlink
+# será criado para este arquivo.
+
+etc=$RICE/etc;
+files="$(find $etc -name '*' -type f)";
+
+for file in $files
+do
+   case "$file" in
+      # regras
+      # path da origem                 path do destino e nome do arquivo
+      $etc/st/config.def.h)            target="$RICE/src/st-0.9.2/config.def.h" ;;
+      $etc/dwm/config.def.h)           target="$RICE/src/dwm-6.2/config.def.h" ;;
+      $etc/slock/config.def.h)         target="$RICE/src/slock-1.5/config.def.h" ;;
+      $etc/dmenu/config.def.h)         target="$RICE/src/dmenu-5.3/config.def.h" ;;
+      $etc/dunst/dunstrc)              target="$HOME/.config/dunst/dunstrc" ;;
+      $etc/xinit/xinitrc)              target="$HOME/.xinitrc" ;;
+      $etc/xbindkeys/xbindkeysrc)      target="$HOME/.xbindkeysrc" ;;
+      $etc/bash/profile)               target="$HOME/.profile" ;;
+      $etc/bash/bashrc)                target="$HOME/.bashrc" ;;
+      $etc/bash/bash_logout)           target="$HOME/.bash_logout" ;;
+      $etc/newsboat/config)            target="$HOME/.newsboat/config" ;;
+      $etc/newsboat/urls)              target="$HOME/.newsboat/urls" ;;
+      $etc/slstatus/config.def.h)      target="$RICE/src/slstatus-1.0/config.def.h" ;;
+      $etc/vim)                        target="$HOME/.vimrc" ;;
+      *)                               target="" ;;
+   esac
+
+   # se houver regra, instala
+   if [[ -n "$target" ]]
+   then
+      [[ -d "$(dirname "$target")" ]] || mkdir -p "$(dirname "$target")";
+      if ln -f "$file" "$target" 
+      then
+         echo "Installed: ln -f $file $target";
+      else
+         echo "FAILED: ln -f $file $target";
+      fi
+   else
+      echo "NO RULE: $file";
+   fi
+done
+
+
