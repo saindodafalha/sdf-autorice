@@ -7,7 +7,7 @@
 # instale primeiro as dependências.
 
 # repositório remoto 
-REPO_ROOT='https://github.com/saindodafalha/sdf-autorice/blob/master';
+REPO_ROOT='https://raw.githubusercontent.com/saindodafalha/sdf-autorice/refs/heads/master';
 
 # prepara o ambiente
 export RICE="$HOME/.rice";

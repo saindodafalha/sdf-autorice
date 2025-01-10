@@ -13,7 +13,7 @@
 # rebuilda os softwares suckless
 
 # base do repositório, análogo ao $RICE
-REPO_ROOT='https://github.com/saindodafalha/sdf-autorice/blob/master';
+REPO_ROOT='https://raw.githubusercontent.com/saindodafalha/sdf-autorice/refs/heads/master';
 
 cd $RICE;
 mkdir log var etc doc env wal api;
